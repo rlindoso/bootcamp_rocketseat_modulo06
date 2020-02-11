@@ -1,31 +1,5 @@
-
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
-
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-
-const App: () => React$Node = () => {
-  return (
-    <>
-      <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
-      </View>
-    </>
-  );
-};
+import {StyleSheet, View, Text} from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
@@ -41,4 +15,12 @@ const styles = StyleSheet.create({
   },
 });
 
-export default App;
+export default function App() {
+  return (
+    <>
+      <View style={styles.container}>
+        <Text style={styles.welcome}>Welcome to React Native!</Text>
+      </View>
+    </>
+  );
+}
