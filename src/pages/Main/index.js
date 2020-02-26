@@ -20,21 +20,14 @@ import {
 } from './styles';
 
 export default class Main extends Component {
-  static navigationOptions = {
-    title: 'Usuários',
-  };
-
-  static propTypes = {
-    navigation: PropTypes.shape({
-      navigate: PropTypes.func,
-    }).isRequired
-  };
-
-  state = {
-    newUser: '',
-    users: [],
-    loading: false,
-  };
+  constructor() {
+    super();
+    this.state = {
+      newUser: '',
+      users: [],
+      loading: false,
+    };
+  }
 
   async componentDidMount() {
     const users = await AsyncStorage.getItem('users');
@@ -51,6 +44,12 @@ export default class Main extends Component {
       AsyncStorage.setItem('users', JSON.stringify(users));
     }
   }
+
+  handleNavigate = user => {
+    const { navigation } = this.props;
+
+    navigation.navigate('User', { user });
+  };
 
   handleAddUser = async () => {
     const { users, newUser } = this.state;
@@ -75,11 +74,9 @@ export default class Main extends Component {
     Keyboard.dismiss();
   };
 
-  handleNavigate = user => {
-    const { navigation } = this.props;
-
-    navigation.navigate('User', { user });
-  }
+  static navigationOptions = {
+    title: 'Usuários',
+  };
 
   render() {
     const { users, newUser, loading } = this.state;
@@ -124,3 +121,9 @@ export default class Main extends Component {
     );
   }
 }
+
+Main.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+};
